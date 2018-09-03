@@ -1,3 +1,5 @@
-Library
 Temp
 .vs
+obj/
+Assembly-CSharp.csproj
+proto-battle-1.sln
