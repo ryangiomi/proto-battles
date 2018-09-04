@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     public float maxSpeed = 10f;
     bool facingRight = true;
+    public float directionFacedModifier = 1f;
 
     Animator anim; // TODO: Add animation
 
@@ -14,8 +15,11 @@ public class Player : MonoBehaviour {
     public LayerMask whatIsGround;
     public float jumpForce = 700f;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject ChainZPrefab;
+    public Transform ChainSpawn;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -26,12 +30,12 @@ public class Player : MonoBehaviour {
             // anim.SetBool("Grounded", false); // uncomment after animation is added.
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
         }
-	}
+    }
 
     void FixedUpdate () {
         // Do groundcheck first.
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-        print(grounded);
+        //print(grounded);
         //anim.SetBool("Ground", grounded); // Uncomment after animations are setup.
         
 
@@ -41,14 +45,15 @@ public class Player : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
         if (move > 0 && !facingRight) {
+            directionFacedModifier *= -1;
             Flip();
         } else if (move < 0 && facingRight){
+            directionFacedModifier *= -1;
             Flip();
         }
     }
 
-    void Flip ()
-    {
+    void Flip () {
         facingRight = !facingRight;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;

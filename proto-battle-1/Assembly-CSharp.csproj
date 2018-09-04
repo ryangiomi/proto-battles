@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Chainz.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/ryans new side/Documents/unity/proto-battles/proto-battle-1/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
